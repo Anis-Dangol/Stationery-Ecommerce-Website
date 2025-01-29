@@ -1,0 +1,15 @@
+mongo password = bgnBFpOsRhscKDPY
+
+
+
+npm run dev for frontend also
+npm run dev for bakend also
+
+
+npm install -D tailwindcss@3.4.17 postcss autoprefixer
+npx tailwindcss init -p
+
+npx shadcn-ui@0.8.0 init
+
+
+npx shadcn@0.8.0 add input
