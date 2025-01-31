@@ -1,4 +1,3 @@
-
 export const registerFormControls = [
     {
         name: 'userName',
@@ -44,7 +43,7 @@ export const addProductFormElements = [
     {
         label: "Title",
         name: "title",
-        commonType: "input",
+        componentType: "input",
         type: "text",
         placehoder: "Enter product title",
     },

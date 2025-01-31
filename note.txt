@@ -13,3 +13,6 @@ npx shadcn-ui@0.8.0 init
 
 
 npx shadcn@0.8.0 add input
+
+
+3:40:23
