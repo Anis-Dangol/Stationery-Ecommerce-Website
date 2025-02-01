@@ -6,7 +6,14 @@ import { Button } from "../ui/button";
 
 
 
-function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText }) {
+function CommonForm({ 
+    formControls, 
+    formData, 
+    setFormData, 
+    onSubmit, 
+    buttonText, 
+    isBtnDisabled, 
+}) {
 
     function renderInputsByComponentType(getControlItem) {
         let element = null;
@@ -62,7 +69,7 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText 
                         value={value}
                         onChange={event => setFormData({
                             ...formData,
-                            [getControlItem.name]: event.target.value
+                            [getControlItem.name]: event.target.value,
                         })}
                     />
                 )
@@ -74,6 +81,7 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText 
                         placeholder={getControlItem.placehoder}
                         id={getControlItem.name}
                         type={getControlItem.type}
+                        value={value}
                         onChange={event => setFormData({
                             ...formData,
                             [getControlItem.name]: event.target.value
@@ -89,13 +97,15 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText 
         <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-3">
                 {formControls.map((controlItem => (
-                    <div className="grid w-full gap-3.5" key={controlItem.name}>
+                    <div className="grid w-full gap-1.5" key={controlItem.name}>
                         <Label className="mb-0">{controlItem.label}</Label>
                         {renderInputsByComponentType(controlItem)}
                     </div>)
                 ))}
             </div>
-            <Button type="submit" className='mt-6 w-full' >{buttonText || 'Submit'}</Button>
+            <Button disabled={isBtnDisabled} type="submit" className='mt-6 w-full' >
+                {buttonText || 'Submit'}
+            </Button>
         </form>
      );
 }
