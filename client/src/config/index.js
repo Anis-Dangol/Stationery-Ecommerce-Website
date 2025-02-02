@@ -142,9 +142,35 @@ export const shoppingViewHeaderMenuItems = [
     label : "Papers",
     path : "/shop/listing",
   }
-  
-]
+];
 
+export const filterOptions = {
+  category: [
+    { id: "notebooks&diary", label: "Notebooks & Diary" },
+    { id: "pens", label: "Pens" },
+    { id: "sticky_notes", label: "Sticky Notes" },
+    { id: "correction_tapes", label: "Correction Tapes" },
+    { id: "paints", label: "Paints" },
+    { id: "pencils", label: "Pencils" },
+    { id: "art_essentials", label: "Art Essentials" },
+    { id: "papers", label: "Papers" },
+    { id: "others", label: "Others" },
+  ],
+  sub_category: [
+    { id: "notebooks", label: "Notebooks" },
+    { id: "diary", label: "Diary" },
+    { id: "gel_pens", label: "Gel Pens" },
+    { id: "ball_pens", label: "Ball Pens" },
+    { id: "fountain_pens", label: "Fountain Pens" },
+  ],
+}
+
+export const sortOptions = [
+  { id: "price_low_to_high", label: "Price Low to High" },
+  { id: "price_high_to_low", label: "Price High to Low" },
+  { id: "title-atoz", label: "Title: A to Z" },
+  { id: "title-ztoa", label: "Title: Z to A" },
+]
 // { id: "notebooks&diary", label: "Notebooks & Diary" },
 // { id: "pens", label: "Pens" },
 // { id: "sticky_notes", label: "Sticky Notes" },

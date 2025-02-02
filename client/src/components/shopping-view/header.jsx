@@ -60,7 +60,7 @@ function HeaderRightContent() {
 }
 
 
-function ShoppingHeader() {
+export function ShoppingHeader() {
 
     const {isAuthenticated, user } = useSelector(state => state.auth);
     console.log(user, 'useruseruser')
@@ -94,5 +94,3 @@ function ShoppingHeader() {
         </div>
     </header>
 }
-
-export default ShoppingHeader;
