@@ -100,3 +100,58 @@ export const addProductFormElements = [
         placehoder: "Enter total stock",
       },
 ];
+
+export const shoppingViewHeaderMenuItems = [
+  {
+    id : "home",
+    label : "Home",
+    path : "/shop/home",
+  },
+  {
+    id : "notebooks&diary",
+    label : "Notebooks & Diary",
+    path : "/shop/listing",
+  },
+  {
+    id : "pens",
+    label : "Pens",
+    path : "/shop/listing",
+  },
+  {
+    id : "sticky_notes",
+    label : "Sticky Notes",
+    path : "/shop/listing",
+  },
+  {
+    id : "correction_tapes",
+    label : "Correction Tapes",
+    path : "/shop/listing",
+  },
+  {
+    id : "paints",
+    label : "Paints",
+    path : "/shop/listing",
+  },
+  {
+    id : "art_essentials",
+    label : "Art Essentials",
+    path : "/shop/listing",
+  },
+  {
+    id : "papers",
+    label : "Papers",
+    path : "/shop/listing",
+  }
+  
+]
+
+// { id: "notebooks&diary", label: "Notebooks & Diary" },
+// { id: "pens", label: "Pens" },
+// { id: "sticky_notes", label: "Sticky Notes" },
+// { id: "erasers", label: "Erasers" },
+// { id: "correction_tapes", label: "Correction Tapes" },
+// { id: "paints", label: "Paints" },
+// { id: "pencils", label: "Pencils" },
+// { id: "art_essentials", label: "Art Essentials" },
+// { id: "papers", label: "Papers" },
+// { id: "others", label: "Others" },

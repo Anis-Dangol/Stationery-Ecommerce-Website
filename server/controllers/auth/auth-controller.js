@@ -45,8 +45,11 @@ export const loginUser = async (req, res) => {
         if (!checkPasswordMatch) return res.json({ success: false, message: "Invalid Password. Please Try Again!!!" });
 
         const token = jwt.sign({
-            id : checkUser._id, role : checkUser.role, email : checkUser.email,
-        }, 'CLIENT_SECRET_KEY', { expiresIn: '60m' });
+            id : checkUser._id, 
+            role : checkUser.role, 
+            email : checkUser.email,
+            userName : checkUser.userName,
+        }, 'CLIENT_SECRET_KEY', { expiresIn: '60000m' });
 
         res.cookie('token', token, { httpOnly: true, secure: false}).json({ 
             success: true, 
@@ -55,6 +58,7 @@ export const loginUser = async (req, res) => {
                 email : checkUser.email,
                 role : checkUser.role,
                 id : checkUser._id,
+                userName : checkUser.userName,
             }
         });
 
