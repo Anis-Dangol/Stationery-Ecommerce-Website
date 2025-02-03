@@ -17,3 +17,5 @@ npx shadcn@0.8.0 add input
 
 05:27:00
 
+
+store/shop/product-slice ma problem xa

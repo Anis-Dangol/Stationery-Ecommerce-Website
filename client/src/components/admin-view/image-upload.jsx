@@ -7,7 +7,7 @@ import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
 
 
-function ProducImageUpload({
+function ProductImageUpload({
     imageFile, 
     setImageFile,
     imageLoadingState,
@@ -100,4 +100,4 @@ function ProducImageUpload({
      );
 }
 
-export default ProducImageUpload;
+export default ProductImageUpload;
