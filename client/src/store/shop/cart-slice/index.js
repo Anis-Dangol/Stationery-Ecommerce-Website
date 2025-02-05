@@ -3,13 +3,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    cartItem  :[],
+    cartItems  :[],
     isLoading : false,
 }
 
 export const addToCart = createAsyncThunk(
     'cart/addToCart', 
     async ({userId, productId, quantity}) => {
+        console.log("Payload:", { userId, productId, quantity });
     const response = await axios.post(
         `http://localhost:5000/api/shop/cart/add`, {
             userId,
@@ -17,7 +18,7 @@ export const addToCart = createAsyncThunk(
             quantity
         }
     );
-
+    console.log("API Response:", response.data);
     return response.data;
 })
 
@@ -66,11 +67,11 @@ const shoppingCartSlice = createSlice({
         })
         .addCase(addToCart.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.cartItem = action.payload.data;
+            state.cartItems = action.payload.data;
         })
         .addCase(addToCart.rejected, (state) => {
             state.isLoading = false;
-            state.cartItem = [];
+            state.cartItems = [];
         })
 
         .addCase(fetchCartItems.pending, (state) => {
@@ -78,11 +79,11 @@ const shoppingCartSlice = createSlice({
         })
         .addCase(fetchCartItems.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.cartItem = action.payload.data;
+            state.cartItems = action.payload.data;
         })
         .addCase(fetchCartItems.rejected, (state) => {
             state.isLoading = false;
-            state.cartItem = [];
+            state.cartItems = [];
         })
 
         .addCase(updateCartQuantity.pending, (state) => {
@@ -90,11 +91,11 @@ const shoppingCartSlice = createSlice({
         })
         .addCase(updateCartQuantity.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.cartItem = action.payload.data;
+            state.cartItems = action.payload.data;
         })
         .addCase(updateCartQuantity.rejected, (state) => {
             state.isLoading = false;
-            state.cartItem = [];
+            state.cartItems = [];
         })
 
         .addCase(deleteCartItem.pending, (state) => {
@@ -102,11 +103,11 @@ const shoppingCartSlice = createSlice({
         })
         .addCase(deleteCartItem.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.cartItem = action.payload.data;
+            state.cartItems = action.payload.data;
         })
         .addCase(deleteCartItem.rejected, (state) => {
             state.isLoading = false;
-            state.cartItem = [];
+            state.cartItems = [];
         })
     }
 });

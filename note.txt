@@ -15,7 +15,6 @@ npx shadcn-ui@0.8.0 init
 npx shadcn@0.8.0 add input
 
 
-05:27:00
+07:43:01
 
 
-store/shop/product-slice ma problem xa

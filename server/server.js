@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import cors from "cors";
+import cors from "cors"; 
 import authRouter from "./routes/auth/auth-routes.js";
 import adminProductsRouter from "./routes/admin/products-routes.js";
 import shopProductsRouter from "./routes/shop/products-routes.js";
@@ -15,6 +15,7 @@ mongoose.connect('mongodb+srv://anisdangol121:bgnBFpOsRhscKDPY@e-commerce.1h459.
 .catch(error => console.log(error));
 
 const app = express();
+app.use(express.json());   // Required for parsing JSON in requests
 const PORT = process.env.PORT || 5000;
 
 app.use(

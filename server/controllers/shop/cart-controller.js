@@ -6,8 +6,9 @@ import Product from '../../models/Product.js';
 export const addToCart = async (req, res) => {
     try {
         const { userId, productId, quantity } = req.body;
-        
-        if (!userId || !productId || !quantity <= 0) {
+        console.log("Request body:", req.body);
+
+        if (!userId || !productId || quantity <= 0) {
             return res.status(400).json({ 
                 success: false, 
                 message: "Invalid request data provided!!!"
@@ -44,13 +45,15 @@ export const addToCart = async (req, res) => {
             
         
     } catch (error) {
-        console.log(error);
+        console.log("Error in addToCart:", error);
         res.status(500).json({ 
             success: false, 
             message: "Error in adding to cart"
         });
     }
 };
+
+
 
 export const fetchCartItems = async (req, res) => {
     try {
@@ -112,7 +115,7 @@ export const updateCartItemQuantity = async (req, res) => {
     try {
         const { userId, productId, quantity } = req.body;
 
-        if(!userId || !productId || !quantity <= 0) {
+        if(!userId || !productId || quantity <= 0) {
             return res.status(400).json({ 
                 success: false, 
                 message: "Invalid request data provided!!!"
@@ -172,7 +175,7 @@ export const updateCartItemQuantity = async (req, res) => {
 
 export const deleteCartItem = async (req, res) => {
     try {
-        const { userId, productId } = req.body;
+        const { userId, productId } = req.params;
 
         if(!userId || !productId) {
             return res.status(400).json({ 
@@ -193,7 +196,7 @@ export const deleteCartItem = async (req, res) => {
             });
         }
 
-        cart.items = cart.items.filter(item => item.productId.toString() !== productId);
+        cart.items = cart.items.filter(item => item.productId._id.toString() !== productId);
 
         await cart.save();
 

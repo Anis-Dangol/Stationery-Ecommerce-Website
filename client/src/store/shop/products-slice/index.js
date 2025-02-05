@@ -13,13 +13,12 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     async ({filterParams, sortParams}) => {
 
         const query = new URLSearchParams({
-            ...filterParams,    // checkbox filter is not working , data is not geting pulled
+            ...filterParams,
             sortBy: sortParams,
         });
       const result = await axios.get(
         `http://localhost:5000/api/shop/products/get?${query}`
       );
-      console.log("API Response:", result.data);
       return result?.data;
     }
 );
