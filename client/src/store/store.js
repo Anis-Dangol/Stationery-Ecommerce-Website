@@ -3,6 +3,7 @@ import authReducer from "./auth-slice";
 import { AdminProductsSlice } from "./admin/products-slice/index.js";
 import { shoppingProductsSlice } from "./shop/products-slice";
 import shopCartSlice from "./shop/cart-slice";
+import shopAddressSlice from "./shop/address-slice";
 
 
 
@@ -12,6 +13,7 @@ const store = configureStore({
         adminProducts: AdminProductsSlice.reducer,  // added.reducer to show the images in the admin panel
         shopProducts: shoppingProductsSlice.reducer,
         shopCart: shopCartSlice,
+        shopAddress: shopAddressSlice,
     },
 });
 
