@@ -14,14 +14,6 @@ export const addAddress = async (req, res) => {
             })
         }
 
-        await newlyCreatedAddress.save();
-
-        res.status(201).json({
-            success: true,
-            message: "Address added successfully",
-            data: newlyCreatedAddress,
-        })
-
         const newlyCreatedAddress = new Address({
             userId,
             address,
@@ -30,6 +22,16 @@ export const addAddress = async (req, res) => {
             phone,
             notes,
         });
+
+        await newlyCreatedAddress.save();
+
+        res.status(201).json({
+            success: true,
+            message: "Address added successfully",
+            data: newlyCreatedAddress,
+        })
+
+        
         
     } catch (error) {
         console.log(error);
@@ -81,13 +83,13 @@ export const editAddress = async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: "User ID and Address ID is required",
-            }, formData, {new: true});
+            });
         }
 
         const address = await Address.findOneAndUpdate({ 
             _id: addressId,
             userId,
-        });
+        }, formData, {new: true});
 
         if(!address) {
             return res.status(404).json({
@@ -114,7 +116,6 @@ export const editAddress = async (req, res) => {
 export const deleteAddress = async (req, res) => {
 
     try {
-
         const {userId, addressId} = req.params;
 
         if(!userId || !addressId) {
