@@ -72,13 +72,13 @@ function ShoppingOrderDetailsView({orderDetails}) {
                 <div className="grid gap-4">
                     <div className="grid gap-2">
                         <div className="font-medium">Shipping Info</div>
-                        <div className="grid gap-0.5 text-muted-foreground">
-                            <span>{user.userName}</span>
-                            <span>{orderDetails?.addressInfo?.address}</span>
-                            <span>{orderDetails?.addressInfo?.city}</span>
-                            <span>{orderDetails?.addressInfo?.pincode}</span>
-                            <span>{orderDetails?.addressInfo?.phone}</span>
-                            <span>{orderDetails?.addressInfo?.notes}</span>
+                        <div className="grid gap-0.5 text-muted-foreground font-semibold">
+                            <span>Name: {user.userName}</span>
+                            <span>Address: {orderDetails?.addressInfo?.address}</span>
+                            <span>City: {orderDetails?.addressInfo?.city}</span>
+                            <span>Pincode: {orderDetails?.addressInfo?.pincode}</span>
+                            <span>Phone: {orderDetails?.addressInfo?.phone}</span>
+                            <span>Notes: {orderDetails?.addressInfo?.notes}</span>
                         </div>
                     </div>
                 </div>

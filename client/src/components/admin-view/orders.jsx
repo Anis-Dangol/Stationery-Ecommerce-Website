@@ -2,12 +2,35 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog } from "../ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminOrderDetailsView from "./order-details";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrdersForAdmin, getOrderDetailsForAdmin, resetOrderDetails } from "@/store/admin/order-slice";
+import { Badge } from "../ui/badge";
 
 function AdminOrdersView() {
 
-    const [OpenDetailsDialog, setOpenDetailsDialog] = useState(false);
+    const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+    const orderList = useSelector(state => state.adminOrder?.orderList);
+    const orderDetails = useSelector(state => state.adminOrder?.orderDetails);
+    const dispatch = useDispatch();
+
+    function handleFetchOrderDetails(getId) {
+        dispatch(getOrderDetailsForAdmin(getId));
+        
+    }
+
+    useEffect(() => {
+        dispatch(getAllOrdersForAdmin());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(orderDetails !== null){
+            setOpenDetailsDialog(true);
+        }}, [orderDetails])
+
+    console.log(orderDetails, "orderDetails");
+    
 
     return ( 
         <Card>
@@ -30,18 +53,35 @@ function AdminOrdersView() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>123456</TableCell>
-                            <TableCell>27/01/2025</TableCell>
-                            <TableCell>In Process</TableCell>
-                            <TableCell>Rs. 10000</TableCell>
-                            <TableCell>
-                                <Dialog open={OpenDetailsDialog} onOpenChange={setOpenDetailsDialog}>
-                                <Button onClick={() => setOpenDetailsDialog(true)}>View Details</Button>
-                                <AdminOrderDetailsView/>
-                                </Dialog>
-                            </TableCell>
-                        </TableRow>
+                        {orderList && orderList.length > 0 ?
+                            orderList.map(orderItem => 
+                                <TableRow>
+                                    <TableCell>{orderItem?._id}</TableCell>
+                                    <TableCell>{orderItem?.orderDate.split('T')[0]}</TableCell>
+                                    <TableCell>
+                                        <Badge className={`py-1 px-3 ${orderItem?.orderStatus === "confirmed" ? "bg-green-500" : "bg-black"}`}>
+                                            {orderItem?.orderStatus}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>Rs. {orderItem?.totalAmount}</TableCell>
+                                    <TableCell>
+                                        <Dialog open=           
+                                        {openDetailsDialog} 
+                                        onOpenChange={() =>{ 
+                                            setOpenDetailsDialog(false)
+                                            dispatch(resetOrderDetails())
+                                            }}
+                                        >
+                                        <Button 
+                                        onClick={() => handleFetchOrderDetails(orderItem?._id)}
+                                        >View Details</Button>
+                                        <AdminOrderDetailsView
+                                        orderDetails={orderDetails}/>
+                                        </Dialog>
+                                    </TableCell>
+                                </TableRow>
+                            ): null
+                        }
                     </TableBody>
                 </Table>
             </CardContent>

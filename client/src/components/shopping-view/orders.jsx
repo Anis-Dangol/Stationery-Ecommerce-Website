@@ -57,8 +57,7 @@ function ShoppingOrders() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {
-                            orderList && orderList.length > 0 ?
+                        {orderList && orderList.length > 0 ?
                             orderList.map(orderItem => 
                                 <TableRow>
                                     <TableCell>{orderItem?._id}</TableCell>
