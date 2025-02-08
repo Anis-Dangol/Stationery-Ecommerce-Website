@@ -77,7 +77,8 @@ function ShoppingOrders() {
                                             }
                                         }>
                                         <Button onClick={() => handleFetchOrderDetails(orderItem?._id)}>View Details</Button>
-                                        <ShoppingOrderDetailsView/>
+                                        <ShoppingOrderDetailsView
+                                        orderDetails={orderDetails}/>
                                         </Dialog>
                                     </TableCell>
                                 </TableRow>
