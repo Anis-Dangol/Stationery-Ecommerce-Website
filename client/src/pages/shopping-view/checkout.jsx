@@ -1,17 +1,28 @@
 import Address from "@/components/shopping-view/address";
 import CheckoutImg from "../../assets/CheckoutImg.jpg"
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { createNewOrder } from "@/store/shop/order-slice";
+import { useToast } from "@/components/ui/use-toast";
 
 
 
 function ShoppingCheckout() {
 
     const cartItems = useSelector(state => state.shopCart?.cartItems);
+    const user = useSelector(state => state.auth?.user);
+    const approvalURL = useSelector(state => state.shopOrder?.approvalURL);
+    const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
+    const [isPaymentStart, setIsPaymentStart] = useState(false);
+    const dispatch = useDispatch();
+    const {toast} = useToast();
+
+    console.log(currentSelectedAddress, "cartItems");
 
     const totalCartAmount =( 
-        cartItems && cartItems.items&& cartItems.items.length > 0 
+        cartItems && cartItems.items && cartItems.items.length > 0 
             ? cartItems.items.reduce(
                 (sum, currentItem) => 
                     sum + 
@@ -21,7 +32,73 @@ function ShoppingCheckout() {
                 currentItem?.quantity,
                 0
             ) 
-            : 0).toFixed(2);
+            : 0);
+    
+            console.log("Total Amount Type:", typeof totalCartAmount, "Value:", totalCartAmount);
+
+
+    function handleInitiatePaypalPayment() {
+
+        if(cartItems.length === 0) {
+            toast({
+                title: "Your Cart is empty. Please add some items to proceed.",
+                variant: "destructive",
+            })
+            return;
+        }
+
+        if(currentSelectedAddress === null) {
+            toast({
+                title: "Please select one an address to proceed.",
+                variant: "destructive",
+            })
+            return;
+        }
+
+        const orderData = {
+            userId : user?.id,
+            cartId: cartItems?._id,
+            cartItems : cartItems.items.map(singleCartItem => ({
+                productId: singleCartItem.productId,
+                title: singleCartItem.title,
+                image: singleCartItem.image,
+                price: singleCartItem.salePrice > 0 ? singleCartItem.salePrice : singleCartItem.price,
+                quantity: singleCartItem.quantity,
+            })),
+            addressInfo : {
+                addressId : currentSelectedAddress?._id,
+                address : currentSelectedAddress?.address,
+                city : currentSelectedAddress?.city,
+                pincode : currentSelectedAddress?.pincode,
+                phone : currentSelectedAddress?.phone,
+                notes : currentSelectedAddress?.notes,
+            },
+            orderStatus : 'pending',
+            paymentMethod : 'paypal',
+            paymentStatus : 'pending',
+            totalAmount : totalCartAmount,
+            orderDate : new Date(),
+            orderUpdatedDate : new Date(),
+            paymentId : '',
+            payerId : '',
+        }
+        
+        console.log(orderData, "orderData");
+
+        dispatch(createNewOrder(orderData)).then((data) => {
+            console.log(data, "data");
+            if(data?.payload?.success) {
+                setIsPaymentStart(true);
+            } else {
+                setIsPaymentStart(false);
+            }
+        });
+    }
+
+    if(approvalURL){
+        window.location.href = approvalURL;
+    }
+
 
     return ( 
         <div className="flex flex-col">
@@ -32,7 +109,7 @@ function ShoppingCheckout() {
                 />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 p-5">
-                <Address/>
+                <Address setCurrentSelectedAddress={setCurrentSelectedAddress}/>
                 <div className="flex flex-col gap-4">
                     {
                         cartItems && cartItems.items && cartItems.items.length > 0 
@@ -47,9 +124,9 @@ function ShoppingCheckout() {
                         </div>
                     </div>
                     <div className="mt-4 w-full">
-                        <Button 
+                        <Button onClick={handleInitiatePaypalPayment}
                             className="w-full"
-                        >Checkout with Esewa
+                        >Checkout with Paypal
                         </Button>
                     </div>   
                 </div>

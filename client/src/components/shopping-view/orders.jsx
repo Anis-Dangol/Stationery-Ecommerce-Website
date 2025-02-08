@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Dialog } from "../ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import ShoppingOrderDetailsView from "./order-details";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrderByUserId } from "@/store/shop/order-slice";
+import { Badge } from "../ui/badge";
 
 
 
@@ -11,6 +14,15 @@ import ShoppingOrderDetailsView from "./order-details";
 function ShoppingOrders() {
 
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.auth?.user);
+    const orderList = useSelector(state => state.shopOrder?.orderList);
+
+    useEffect(() => {
+        dispatch(getAllOrderByUserId(user?.id));
+    }, [dispatch]);
+
+    console.log(orderList, "orderList");
 
     return ( 
         <Card>
@@ -33,18 +45,29 @@ function ShoppingOrders() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>123456</TableCell>
-                            <TableCell>27/01/2025</TableCell>
-                            <TableCell>In Process</TableCell>
-                            <TableCell>Rs. 10000</TableCell>
-                            <TableCell>
-                                <Dialog open={openDetailsDialog} onOpenChange={setOpenDetailsDialog}>
-                                <Button onClick={() => setOpenDetailsDialog(true)}>View Details</Button>
-                                <ShoppingOrderDetailsView/>
-                                </Dialog>
-                            </TableCell>
-                        </TableRow>
+                        {
+                            orderList && orderList.length > 0 ?
+                            orderList.map(orderItem => 
+                                <TableRow>
+                                    <TableCell>{orderItem?._id}</TableCell>
+                                    <TableCell>{orderItem?.orderDate.split('T')[0]}</TableCell>
+                                    <TableCell>
+                                        <Badge className={`py-1 px-3 ${orderItem?.orderStatus === "confirmed" ? "bg-green-500" : "bg-black"}`}>
+                                            {orderItem?.orderStatus}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>Rs. {orderItem?.totalAmount}</TableCell>
+                                    <TableCell>
+                                        <Dialog open=           
+                                        {openDetailsDialog} onOpenChange={setOpenDetailsDialog}>
+                                        <Button onClick={() => setOpenDetailsDialog(true)}>View Details</Button>
+                                        <ShoppingOrderDetailsView/>
+                                        </Dialog>
+                                    </TableCell>
+                                </TableRow>
+                            ): null
+                        }
+                        
                     </TableBody>
                 </Table>
             </CardContent>
