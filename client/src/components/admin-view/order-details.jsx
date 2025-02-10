@@ -4,11 +4,14 @@ import { DialogContent } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { data } from "react-router-dom";
+import { getAllOrdersForAdmin, getOrderDetailsForAdmin, updateOrderStatus } from "@/store/admin/order-slice";
+import { useToast } from "../ui/use-toast";
 
 
 const initialFormData = {
-    status : "",
+    status: "",
 }
 
 
@@ -16,9 +19,26 @@ function AdminOrderDetailsView({orderDetails}) {
 
     const [formData, setFormData] = useState(initialFormData);
     const user = useSelector(state => state.auth?.user);
+    const dispatch = useDispatch();
+    const {toast} = useToast();
 
     function handleUpdateStatus(event) {
             event.preventDefault();
+            const { status } = formData;
+            
+
+            dispatch(updateOrderStatus({id: orderDetails?._id, orderStatus: status}))
+            .then((data) => {
+                if(data?.payload?.success){
+                    dispatch(getOrderDetailsForAdmin(orderDetails?._id));
+                    dispatch(getAllOrdersForAdmin());
+                    setFormData(initialFormData);
+                    toast({
+                        title: data?.payload?.message
+                    });
+                }
+            })
+            
     }
 
     return ( 
@@ -48,7 +68,13 @@ function AdminOrderDetailsView({orderDetails}) {
                     <div className="flex mt-2 items-center justify-between">
                         <p className="font-medium">Order Status</p>
                         <Label>
-                            <Badge className={`py-1 px-3 ${orderDetails?.orderStatus === "confirmed" ? "bg-green-500" : "bg-black"}`}>
+                            <Badge className={`py-1 px-3 ${
+                            orderDetails?.orderStatus === "confirmed" 
+                                ? "bg-green-500" 
+                                : orderDetails?.orderStatus === "rejected" ? 'bg-red-500'
+                                : "bg-black"
+                            }`}
+                            >
                                 {orderDetails?.orderStatus}
                             </Badge>
                         </Label>
@@ -97,7 +123,7 @@ function AdminOrderDetailsView({orderDetails}) {
                     formControls={[
                         {
                             label: "Order Status",
-                            name: "Status",
+                            name: "status",
                             componentType: "select",
                             options: [
                             { id: "pending", label: "Pending" },
