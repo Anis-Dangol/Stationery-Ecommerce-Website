@@ -11,6 +11,7 @@ import ShoppingProductTile from "../../components/shopping-view/product-tile";
 import { useSearchParams } from "react-router-dom";
 import { ProductDetailsDialog } from "@/components/shopping-view/product-details";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
+import { useToast } from "@/components/ui/use-toast";
 
 
 
@@ -40,6 +41,9 @@ function ShoppingListing() {
     const [sort, setSort] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+    const { toast } = useToast();
+
+    const categorySearchParam = searchParams.get('category');
 
     function handleSort(value) {
         setSort(value);
@@ -89,7 +93,7 @@ function ShoppingListing() {
     useEffect(() => {
         setSort("price-lowtohigh");
         setFilters(JSON.parse(sessionStorage.getItem('filters')) || {});
-    },[]);
+    },[categorySearchParam]);
 
     useEffect(() => {
         if(filters && Object.keys(filters).length > 0) {
