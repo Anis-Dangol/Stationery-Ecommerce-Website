@@ -1,6 +1,7 @@
 import ProductImageUpload from "@/components/admin-view/image-upload";
 import { Button } from "@/components/ui/button";
-import { addFeatureImage, getFeatureImages } from "@/store/common-slice";
+import { addFeatureImage, deleteFeatureImage, getFeatureImages } from "@/store/common-slice";
+import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,6 +22,15 @@ function AdminDashboard() {
                 setUploadedImageUrl("");
             }
         })
+    }
+
+    function handleDeleteFeatureImage(id) {
+        dispatch(deleteFeatureImage(id))
+        .then((data) => {
+            if (data?.payload?.success) {
+                dispatch(getFeatureImages());
+            }
+        });
     }
 
     useEffect(() => {
@@ -48,11 +58,14 @@ function AdminDashboard() {
                         featureImageList && featureImageList.length > 0 ?
                         featureImageList.map(featureImageItem => 
                             <div className="relative">
-                            <img
-                                src={featureImageItem.image}
-                                className="w-full h-[300px] object-cover rounded-t-lg"
-                            />
-                        </div>
+                                <img
+                                    src={featureImageItem.image}
+                                    className="w-full h-[300px] object-cover rounded-t-lg"
+                                />
+                                <Button className="absolute top-2 right-2" onClick={() => handleDeleteFeatureImage(featureImageItem._id)}>
+                                    <XIcon size={24} />
+                                </Button>
+                            </div>
                         ) : null
                     }
               </div>
