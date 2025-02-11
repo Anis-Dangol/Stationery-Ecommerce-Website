@@ -31,7 +31,7 @@ function ShoppingProductTile({product, handleGetProductDetails, handleAddtoCart}
                     }
                 </div>
                 <CardContent className="p-4">
-                    <h2 className="text-xl font-bold mb-2">{product?.title}</h2>
+                    <h2 className="cursor-pointer text-xl font-bold mb-2 mt-2 truncate w-full" title={product?.title}>{product?.title}</h2>
                     <div className="flex justify-between items-center mb-2">
                         <span className="text-sm text-muted-foreground">{categoryOptionsMap[product?.category]}</span>
                         <span className="text-sm text-muted-foreground">{sub_categoryOptionsMap[product?.sub_category]}</span>

@@ -60,7 +60,7 @@ function AdminDashboard() {
                             <div className="relative">
                                 <img
                                     src={featureImageItem.image}
-                                    className="w-full h-[300px] object-cover rounded-t-lg"
+                                    className="w-full h-[400px] object-cover rounded-t-lg hover:object-scale-down"
                                 />
                                 <Button className="absolute top-2 right-2" onClick={() => handleDeleteFeatureImage(featureImageItem._id)}>
                                     <XIcon size={24} />
