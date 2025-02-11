@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import banner1 from '../../assets/banner1.jpg';
 import banner2 from '../../assets/banner2.jpg';
 import banner3 from '../../assets/banner3.jpg';
-import { ChevronLeftIcon, ChevronRightIcon, LampDesk, Notebook, Package, PaintBucket, Pen, Scissors } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon, DiscAlbum, LampDesk, Notebook, Package, PaintBucket, Pen, Scissors } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { addToCart, fetchCartItems } from '@/store/shop/cart-slice';
 import { useToast } from '@/components/ui/use-toast';
 import { ProductDetailsDialog } from '@/components/shopping-view/product-details';
+import { getFeatureImages } from '@/store/common-slice';
 
 const categoriesWithIcon = [
     { id: "writing_essentials", label: "Writing Essentials", icon : Pen },
@@ -46,14 +47,13 @@ function ShoppingHome() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const productList = useSelector(state => state.shopProducts?.productList);
     const productDetails = useSelector(state => state.shopProducts?.productDetails);
+    const { featureImageList } = useSelector(state => state.commonFeature);
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
     const user = useSelector(state => state.auth?.user);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { toast } = useToast();
-
-    const slides = [banner1, banner2, banner3];
 
     function handleNavigateToLisingPage(getCurrentItem, section) {
         sessionStorage.removeItem('filters');
@@ -94,10 +94,10 @@ function ShoppingHome() {
     
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentSlide(prevSlide => (prevSlide + 1) % slides.length);
-        }, 50000)
+            setCurrentSlide(prevSlide => (prevSlide + 1) % featureImageList.length);
+        }, 5000)
         return () => clearInterval(timer);
-    }, []);
+    }, [featureImageList]);
 
     useEffect(() => {
         dispatch(fetchAllFilteredProducts({ filterParams: {}, sortParams : 'price-lowtohigh' }));
@@ -105,20 +105,25 @@ function ShoppingHome() {
 
     console.log(productList, "productList");
 
+    useEffect(() => {
+        dispatch(getFeatureImages());
+    }, [dispatch]);
+
     return ( 
         <div className="flex flex-col min-h-screen">
             <div className="relative w-full h-[600px] overflow-hidden">
-                {slides.map((slide, index) => (
+                {featureImageList && featureImageList.length > 0 ?
+                featureImageList.map((slide, index) => (
                     <img
-                        src={slide}
+                        src={slide?.image}
                         key={index}
                         className={`${index === currentSlide ? 'opacity-100' : 'opacity-0' } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500`}
                     />
-                ))}
+                )) : null}
                 <Button 
                     variant="outline" 
                     size="icon" 
-                    onClick={() => setCurrentSlide(prevSlide => (prevSlide - 1 + slides.length) % slides.length)}
+                    onClick={() => setCurrentSlide(prevSlide => (prevSlide - 1 + featureImageList.length) % featureImageList.length)}
                     className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
                 >
                     <ChevronLeftIcon className='w-4 h-4'/>
@@ -126,7 +131,7 @@ function ShoppingHome() {
                 <Button 
                     variant="outline" 
                     size="icon"
-                    onClick={() => setCurrentSlide(prevSlide => (prevSlide + 1) % slides.length)} 
+                    onClick={() => setCurrentSlide(prevSlide => (prevSlide + 1) % featureImageList.length)} 
                     className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80"
                 >
                     <ChevronRightIcon className='w-4 h-4'/>
