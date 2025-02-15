@@ -37,9 +37,9 @@ function AuthLogin() {
     }
 
     return ( 
-        <div className="mx-auto w-full max-w-md space-y-6">
+        <div className="mx-auto w-full max-w-md space-y-6 ">
             <div className="text-center">
-                <h1 className="text-3xl font-bold tracking-tight text-foreground">Sign in to your account</h1>
+                <h1 className="text-3xl font-bold tracking-tight text-foreground">Sign In To Your Account</h1>
             </div>
             <CommonForm
             formControls={loginFormControls}
@@ -49,7 +49,7 @@ function AuthLogin() {
             onSubmit={onSubmit}
             />
             <p className="mt-0">
-                    Don't have an account
+                    Don't have an account?
                     <Link 
                         className="font-medium ml-2 text-primary hover:underline" 
                         to="/auth/register"

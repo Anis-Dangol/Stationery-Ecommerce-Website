@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, User, UserCog } from "lucide-react";
+import { HousePlug, LogOut, Menu, PencilRuler, ShoppingCart, User, UserCog } from "lucide-react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
@@ -35,7 +35,7 @@ function MenuItems() {
         navigate(getCurrentMenuItem.path)
     }
 
-    return <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
+    return <nav className="text-[#E6E0D3] flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
         {shoppingViewHeaderMenuItems.map((menuItem) => (
             <Label 
                 onClick={() => handleNavigate(menuItem) }
@@ -73,8 +73,8 @@ function HeaderRightContent() {
                 size="icon"
                 className="relative"
             >
-                <ShoppingCart className="w-8 h-8" />
-                <span className="absolute top-[-5px] right-[2px] font-bold text-sm">{cartItems?.items?.length || 0}</span>
+                <ShoppingCart className="w-8 h-8 text-[#E6E0D3]" />
+                <span className="absolute top-[-5px] right-[2px] font-bold text-sm text-[#E6E0D3]">{cartItems?.items?.length || 0}</span>
                 <span className="sr-only">User cart</span>
             </Button>
             <UserCartWrapper 
@@ -84,21 +84,21 @@ function HeaderRightContent() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Avatar className="bg-black">
-                        <AvatarFallback className="bg-black text-white font-extrabold ">
+                        <AvatarFallback className="bg-[#E6E0D3] text-[#070f18] font-extrabold">
                             {user?.userName[0].toUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="right" className="w-56">
+                <DropdownMenuContent side="right" className="w-56 mt-2 border-[#070f18] bg-[#E6E0D3]">
                     <DropdownMenuLabel>
                         Logged in as {user?.userName}
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator/>
+                    <DropdownMenuSeparator className="bg-[#070f18]"/>
                     <DropdownMenuItem onClick={() => navigate('/shop/account')}>
                         <UserCog className="mr-2 h-4 w-4"/>
                         Account
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator/>
+                    <DropdownMenuSeparator className="bg-[#070f18]"/>
                     <DropdownMenuItem onClick={handleLogout}>
                         <LogOut className="mr-2 h-4 w-4"/>
                         Logout
@@ -114,11 +114,11 @@ export function ShoppingHeader() {
     const {isAuthenticated, user } = useSelector(state => state.auth);
     console.log(user, 'useruseruser')
 
-    return <header className="sticky top-0 z-40 w-full border-b bg-background pt-3 pb-3">
+    return <header className="bg-[#070f18] sticky top-0 z-40 w-full border-b border-[#070f18] pt-3 pb-3">
         <div className="flex h-1/6 items-center justify-between px-4 md:px-6">
             <Link to="/shop/home" className="flex items-center gap-2">
-            <HousePlug className="h-10 w-10" />
-            <span className="font-bold">Ecommerce</span>
+            <PencilRuler className="text-[#E6E0D3] h-10 w-10" />
+            <span className="font-bold text-[#E6E0D3]">Sab ko Stationary</span>
             </Link>
             <Sheet>
                 <SheetTrigger asChild>

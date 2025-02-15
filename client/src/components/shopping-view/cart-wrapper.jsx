@@ -23,13 +23,13 @@ function UserCartWrapper({cartItems, setOpenCartSheet}) {
             : 0).toFixed(2);
 
     return (
-        <SheetContent className="sm: max-w-md">
+        <SheetContent className="sm: max-w-md bg-[#E6E0D3] ">
             <SheetHeader>
                 <SheetTitle>
                     Your Cart
                 </SheetTitle>
             </SheetHeader>
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-4 bg-[#E6E0D3] text-[#070f18] rounded-lg p-2">
                 {
                     cartItems && cartItems.length > 0 ? 
                     cartItems.map((item) => <UserCartItemsContent cartItem={item} />) : null

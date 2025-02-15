@@ -42,7 +42,7 @@ function AdminOrderDetailsView({orderDetails}) {
     }
 
     return ( 
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] bg-[#E6E0D3]">
             <div className="grid gap-6">
             <div className="grid gap-2">
                     <div className="flex mt-6 items-center justify-between">
@@ -80,7 +80,7 @@ function AdminOrderDetailsView({orderDetails}) {
                         </Label>
                     </div> 
                 </div>
-                <Separator/>
+                <Separator className="bg-[#070f18]"/>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
                         <div className="font-medium">Order Details</div>
@@ -105,6 +105,7 @@ function AdminOrderDetailsView({orderDetails}) {
                         </ul>
                     </div>
                 </div>
+                <Separator className="bg-[#070f18]"/>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
                         <div className="font-medium">Shipping Info</div>
@@ -118,6 +119,7 @@ function AdminOrderDetailsView({orderDetails}) {
                         </div>
                     </div>
                 </div>
+                <Separator className="bg-[#070f18]"/>
                 <div>
                     <CommonForm
                     formControls={[

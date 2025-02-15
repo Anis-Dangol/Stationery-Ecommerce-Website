@@ -37,7 +37,7 @@ function ShoppingOrders() {
     console.log(orderDetails, "orderDetails");
 
     return ( 
-        <Card>
+        <Card className="bg-[#E6E0D3] border-[#070f18]">
             <CardHeader> 
                 <CardTitle>
                     Order History
@@ -46,7 +46,7 @@ function ShoppingOrders() {
             <CardContent>
                 <Table>
                     <TableHeader>
-                        <TableRow>
+                        <TableRow className="border-[#070f18]">
                             <TableHead>Order ID</TableHead>
                             <TableHead>Order Date</TableHead>
                             <TableHead>Order Status</TableHead>
@@ -59,7 +59,7 @@ function ShoppingOrders() {
                     <TableBody>
                         {orderList && orderList.length > 0 ?
                             orderList.map(orderItem => 
-                                <TableRow>
+                                <TableRow className="border-[#070f18]">
                                     <TableCell>{orderItem?._id}</TableCell>
                                     <TableCell>{orderItem?.orderDate.split('T')[0]}</TableCell>
                                     <TableCell>

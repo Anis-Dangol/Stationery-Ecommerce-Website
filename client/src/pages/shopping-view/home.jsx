@@ -95,7 +95,7 @@ function ShoppingHome() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide(prevSlide => (prevSlide + 1) % featureImageList.length);
-        }, 5000)
+        }, 60000)
         return () => clearInterval(timer);
     }, [featureImageList]);
 
@@ -137,15 +137,15 @@ function ShoppingHome() {
                     <ChevronRightIcon className='w-4 h-4'/>
                 </Button>
             </div>
-            <section className='py-12 bg-gray-50'>
+            <section className='py-12 bg-[#E6E0D3]'>
                 <div className='continer mx-auto px-4'>
-                    <h2 className='text-3xl font-bold text-center mb-8'>Shop by category</h2>
+                    <h2 className='text-3xl font-bold text-center mb-8'>Shop by Category</h2>
                     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4'>
                         {categoriesWithIcon.map(categoryItem => 
                             <Card onClick={() => handleNavigateToLisingPage(categoryItem, 'category')} className="cursor-pointer hover:shadow-lg transition-shadow">
-                                <CardContent className="flex flex-col items-center justify-center p-6">
-                                    <categoryItem.icon className="w-12 h-12 mb-4 text-primary"/>
-                                    <span className='font-bold text-center'>{categoryItem.label}</span>
+                                <CardContent className="flex flex-col items-center justify-center p-6 bg-[#070f18] rounded-lg">
+                                    <categoryItem.icon className="w-12 h-12 mb-4 text-[#E6E0D3] bg-[#070f18]"/>
+                                    <span className='font-bold text-center text-[#E6E0D3]'>{categoryItem.label}</span>
                                 </CardContent>
                             </Card>
                         )}
@@ -153,7 +153,7 @@ function ShoppingHome() {
                 </div>
             </section>
 
-            <section className='py-12 bg-gray-50'>
+            {/* <section className='py-12 bg-gray-50'>
                 <div className='continer mx-auto px-4'>
                     <h2 className='text-3xl font-bold text-center mb-8'>Shop by Sub-Category</h2>
                     <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4'>
@@ -167,12 +167,12 @@ function ShoppingHome() {
                         )}
                     </div>
                 </div>
-            </section>
+            </section> */}
             
-            <section className='py-12'>
+            <section className='py-12 bg-[#E6E0D3]'>
                 <div className='continer mx-auto px-4'>
                     <h2 className='text-3xl font-bold text-center mb-8'>Feature Products</h2>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6'>
                         {
                             productList && productList.length > 0 ?
                             productList.map(productItem => <ShoppingProductTile 

@@ -12,7 +12,7 @@ function AdminLayout() {
         <div className="flex min-h-screen w-full">
             {/* admin sidebar */}
             <AdminSideBar open={openSidebar} setOpen={setOpenSidebar} />
-            <div className="flex flex-1 flex-col">
+            <div className="bg-[#e7e2da] flex flex-1 flex-col">
                 {/* admin header */}
                 <AdminHeader setOpen={setOpenSidebar} />
                 <main className="flex-1 flex-col flex bg-muted/40 p-4 md:p-6">

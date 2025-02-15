@@ -24,7 +24,7 @@ function AddressCard({
                 : 'border-black'}
             `}
         >
-            <CardContent className={`grid p-4 gap-4`}>
+            <CardContent className={`bg-[#E6E0D3] border-[#070f18] grid p-4 gap-4`}>
                 <Label>
                     <span className="font-bold">Address: </span>
                     {addressInfo?.address}
@@ -46,7 +46,7 @@ function AddressCard({
                     {addressInfo?.notes}
                 </Label>
             </CardContent>
-            <CardFooter className="p-3 flex justify-between">
+            <CardFooter className="bg-[#E6E0D3] border-[#070f18] p-3 flex justify-between">
                 <Button 
                     onClick={() => handleEditAddress(addressInfo)}
                 >Edit

@@ -71,14 +71,23 @@ function UserCartItemsContent({cartItem}) {
     }
 
     return ( 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 border border-[#070f18] rounded-lg p-3">
             <img 
             src={cartItem?.image} 
             alt={cartItem?.title} 
             className="w-20 h-20 rounded object-cover" />
-            <div className="flex-1">
-                <h3 className="font-extrabold">{cartItem?.title}</h3>
-                <div className="flex items-center gap-2 mt-1">
+            <div className="flex-1 text-sm">
+            <div className="relative group max-w-[130px]">
+                <h3 className="font-extrabold truncate">
+                    {cartItem?.title}
+                </h3>
+                <span 
+                    className="absolute hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 -top-6 left-0 w-max max-w-xs"
+                >
+                    {cartItem?.title}
+                </span>
+            </div>
+                <div className="flex items-center gap-2 mt-1 text-[#070f18]">
                     <Button 
                         variant="outline" 
                         className="h-8 w-8 rounded-full" 
@@ -89,7 +98,7 @@ function UserCartItemsContent({cartItem}) {
                         <Minus className="w-4 h-4"/>
                         <span className="sr-only">Decrease</span>
                     </Button>
-                    <span className="font-semibold">{cartItem.quantity}</span>
+                    <span className="font-semibold text-[#E6E0D3]">{cartItem.quantity}</span>
                     <Button 
                         variant="outline" 
                         className="h-8 w-8 rounded-full" 

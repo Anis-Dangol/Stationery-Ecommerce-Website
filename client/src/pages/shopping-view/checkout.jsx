@@ -101,7 +101,7 @@ function ShoppingCheckout() {
 
 
     return ( 
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-[#E6E0D3]">
             <div className="relative h-[300px] w-full overflow-hidden">
                 <img
                     src={CheckoutImg}
@@ -113,13 +113,15 @@ function ShoppingCheckout() {
                     selectedId={currentSelectedAddress} 
                     setCurrentSelectedAddress={setCurrentSelectedAddress}
                 /> 
-                <div className="flex flex-col gap-4">
-                    {
-                        cartItems && cartItems.items && cartItems.items.length > 0 
-                        ? cartItems.items.map((item) => (
-                            <UserCartItemsContent cartItem={item} />)) 
-                        : null                            
-                    } 
+                <div className="flex flex-col gap-4 text-[#070f18]">
+                    <div className="border-[#070f18] border-2 p-4 rounded-lg">
+                        {
+                            cartItems && cartItems.items && cartItems.items.length > 0 
+                            ? cartItems.items.map((item) => (
+                                <UserCartItemsContent cartItem={item} />)) 
+                            : null                            
+                        } 
+                    </div>
                     <div className="mt-8 space-y-4">
                         <div className="flex justify-between">
                             <span className="font-bold">Total</span>
@@ -132,7 +134,7 @@ function ShoppingCheckout() {
                         >
                             {
                                 isPaymentStart ? 'Processing Paypal Payment...' 
-                                : 'Checkout with Payment'
+                                : 'Checkout With Payment'
                             }
                         </Button>
                     </div>   

@@ -62,7 +62,7 @@ function ProductImageUpload({
             <div 
                 onDragOver={handleDragOver} 
                 onDrop={handleDrop} 
-                className={`${isEditMode ? "opacity-20" : ""} border-2 border-dashed rounded-lg p-4`}
+                className={`${isEditMode ? "opacity-20" : ""} border-2 border-dashed rounded-lg p-4 border-black`}
             >
                 <Input 
                     id="image-upload" 
@@ -76,10 +76,10 @@ function ProductImageUpload({
                     <Label 
                         htmlFor="image-upload" 
                         className={`${isEditMode ? "cursor-not-allowed" : ""
-                            } flex flex-col items-center justify-center h-32 cursor-pointer`
+                            } flex flex-col items-center justify-center h-32 cursor-pointer `
                         } 
                     >
-                        <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2" />
+                        <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2 " />
                         <span>Drag & drop or click to upload image</span>
                     </Label>
                 ) : (

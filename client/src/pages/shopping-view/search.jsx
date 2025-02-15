@@ -83,7 +83,7 @@ function SearchProducts() {
     
 
     return ( 
-        <div className="container mx-auto md:px-6 px-4 py-8">
+        <div className="container mx-auto md:px-6 px-4 py-8 bg-[#E6E0D3]">
             <div className="flex justify-center mb-8">
                 <div className="w-full items-center">
                     <Input 

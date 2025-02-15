@@ -140,17 +140,17 @@ function ShoppingListing() {
     // console.log(filters, searchParams, 'filters');
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
+        <div className="bg-[#070f18] grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
         <ProductFilter filters={filters} handleFilter={handleFilter} />
-        <div className="bg-background w-full rounded-lg shadow-sm">
-            <div className="p-4 border-b flex items-center justify-between">
+        <div className="bg-[#070f18] w-full rounded-lg shadow-sm">
+            <div className="p-4 border-b flex items-center justify-between bg-[#E6E0D3] rounded-t-md">
                 <h2 className="text-lg font-extrabold ">All Products</h2>
                 <div className="flex items-center gap-3 ">
                     <span className="text-muted-foreground">{productList?.length}</span>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="flex items-center gap-1">
-                            <ArrowUpDownIcon className="h-4 w4"/>
+                        <Button variant="outline" size="sm" className="bg-[#070f18] text-white flex items-center gap-1 ">
+                            <ArrowUpDownIcon className="h-4 w4 text-white hover:text-[#070f18] "/>
                             <span>Sort By</span>
                         </Button>
                     </DropdownMenuTrigger>
@@ -169,7 +169,7 @@ function ShoppingListing() {
                 </DropdownMenu>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            <div className="bg-[#E6E0D3] rounded-b-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
                 {
                     productList && productList.length > 0 ?
                     productList.map(productItem => (

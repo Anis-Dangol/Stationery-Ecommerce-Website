@@ -64,6 +64,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#E6E0D3] text-foreground;
   }
 }

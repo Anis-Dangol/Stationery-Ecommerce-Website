@@ -1,22 +1,22 @@
 export const registerFormControls = [
     {
         name: 'userName',
-        label: 'User Name',
-        placehoder: 'Enter your user name',
+        label: 'Username',
+        placehoder: 'Enter your Username',
         componentType : 'input',
         type : 'text',
     },
     {
         name: 'email',
         label: 'Email',
-        placehoder: 'Enter your email',
+        placehoder: 'Enter your Email',
         componentType : 'input',
         type : 'email',
     },
     {
         name: 'password',
         label: 'Password',
-        placehoder: 'Enter your password',
+        placehoder: 'Enter your Password',
         componentType : 'input',
         type : 'password',
     }
@@ -115,11 +115,6 @@ export const addProductFormElements = [
 ];
 
 export const shoppingViewHeaderMenuItems = [
-  {
-    id : "home",
-    label : "Home",
-    path : "/shop/home",
-  },
   {
     id : "products",
     label : "Products",

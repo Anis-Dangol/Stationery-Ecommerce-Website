@@ -108,7 +108,7 @@ function Address({setCurrentSelectedAddress, selectedId}) {
     console.log(addressList, "addressList");
 
     return ( 
-        <Card>
+        <Card className="bg-[#E6E0D3] border-[#070f18]">
             <div className="mb-5 p-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {
                     addressList && addressList.length > 0 
@@ -130,7 +130,7 @@ function Address({setCurrentSelectedAddress, selectedId}) {
                     {currentEditedId !== null ? "Edit Address" : "Add New Address"}
                 </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent >
                 <CommonForm
                     formControls={addressFormControls}
                     formData={formData}
