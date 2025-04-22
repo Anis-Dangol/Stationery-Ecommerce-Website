@@ -102,7 +102,7 @@ export function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
     return (
         <Dialog open={open} onOpenChange={handleDialogClose}>
-            <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[60vw]">
+            <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] bg-[#E6E0D3] sm:max-w-[80vw] lg:max-w-[60vw]">
                 <div className="relative overflow-hidden rounded-lg">
                     <img 
                         src={productDetails?.image}
@@ -118,10 +118,10 @@ export function ProductDetailsDialog({ open, setOpen, productDetails }) {
                         <p className="text-muted-foreground text-2xl mb-5 mt-4">{productDetails?.description}</p>
                     </div>
                     <div className="flex items-center justify-between">
-                        <p className={`text-3xl font-bold text-primary ${productDetails?.salePrice > 0 ? 'line-through' : '' }`}>${productDetails?.price}</p>
+                        <p className={`text-3xl font-bold text-primary ${productDetails?.salePrice > 0 ? 'line-through' : '' }`}>Rs. {productDetails?.price}</p>
                         {
                             productDetails?.salePrice > 0 ? 
-                            <p className="text-2xl font-bold text-muted-foreground">${productDetails?.salePrice}</p> : null
+                            <p className="text-2xl font-bold text-muted-foreground">Rs. {productDetails?.salePrice}</p> : null
                         }
 
                     </div>

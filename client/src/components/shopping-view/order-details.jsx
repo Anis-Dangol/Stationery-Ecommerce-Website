@@ -12,7 +12,7 @@ function ShoppingOrderDetailsView({orderDetails}) {
     const user = useSelector(state => state.auth?.user);
 
     return ( 
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] bg-[#E6E0D3]">
             <div className="grid gap-6">
                 <div className="grid gap-2">
                     <div className="flex mt-6 items-center justify-between">
@@ -38,7 +38,7 @@ function ShoppingOrderDetailsView({orderDetails}) {
                     <div className="flex mt-2 items-center justify-between">
                         <p className="font-medium">Order Status</p>
                         <Label>
-                            <Badge className={`py-1 px-3 ${orderDetails?.orderStatus === "confirmed" 
+                            <Badge className={`py-1 px-3 ${orderDetails?.orderStatus === "confirmed" || orderDetails?.orderStatus === "delivered"
                                 ? "bg-green-500" 
                                 : orderDetails?.orderStatus === "rejected" ? 'bg-red-500'
                                 : "bg-black"}`}>
@@ -47,7 +47,7 @@ function ShoppingOrderDetailsView({orderDetails}) {
                         </Label>
                     </div> 
                 </div>
-                <Separator/>
+                <Separator className="bg-[#070f18]"/>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
                         <div className="font-medium">Order Details</div>
@@ -63,7 +63,7 @@ function ShoppingOrderDetailsView({orderDetails}) {
                                 orderDetails?.cartItems && orderDetails?.cartItems.length > 0 ?
                                 orderDetails?.cartItems.map((item) => (
                                     <li className="flex items-center justify-between">
-                                        <span>{item.title}</span>
+                                        <span className="cursor-pointer truncate w-40" title={item.title}>{item.title}</span>
                                         <span className="pr-8">{item.quantity}</span>
                                         <span>Rs. {item.price}</span>
                                     </li>
@@ -72,6 +72,7 @@ function ShoppingOrderDetailsView({orderDetails}) {
                         </ul>
                     </div>
                 </div>
+                <Separator className="bg-[#070f18]"/>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
                         <div className="font-medium">Shipping Info</div>

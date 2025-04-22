@@ -98,7 +98,7 @@ function UserCartItemsContent({cartItem}) {
                         <Minus className="w-4 h-4"/>
                         <span className="sr-only">Decrease</span>
                     </Button>
-                    <span className="font-semibold text-[#E6E0D3]">{cartItem.quantity}</span>
+                    <span className="font-semibold text-[#070f18]">{cartItem.quantity}</span>
                     <Button 
                         variant="outline" 
                         className="h-8 w-8 rounded-full" 

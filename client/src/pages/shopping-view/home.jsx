@@ -1,7 +1,4 @@
 import { Button } from '@/components/ui/button';
-import banner1 from '../../assets/banner1.jpg';
-import banner2 from '../../assets/banner2.jpg';
-import banner3 from '../../assets/banner3.jpg';
 import { ChevronLeftIcon, ChevronRightIcon, DiscAlbum, LampDesk, Notebook, Package, PaintBucket, Pen, Scissors } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
@@ -151,24 +148,7 @@ function ShoppingHome() {
                         )}
                     </div>
                 </div>
-            </section>
-
-            {/* <section className='py-12 bg-gray-50'>
-                <div className='continer mx-auto px-4'>
-                    <h2 className='text-3xl font-bold text-center mb-8'>Shop by Sub-Category</h2>
-                    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4'>
-                        {sub_categoriesWithIcon.map(sub_categoryItem => 
-                            <Card onClick={() => handleNavigateToLisingPage(sub_categoryItem, 'sub_category')} className="cursor-pointer hover:shadow-lg transition-shadow">
-                                <CardContent className="flex flex-col items-center justify-center p-6">
-                                    <sub_categoryItem.icon className="w-12 h-12 mb-4 text-primary"/>
-                                    <span className='font-bold text-center'>{sub_categoryItem.label}</span>
-                                </CardContent>
-                            </Card>
-                        )}
-                    </div>
-                </div>
-            </section> */}
-            
+            </section>    
             <section className='py-12 bg-[#E6E0D3]'>
                 <div className='continer mx-auto px-4'>
                     <h2 className='text-3xl font-bold text-center mb-8'>Feature Products</h2>
