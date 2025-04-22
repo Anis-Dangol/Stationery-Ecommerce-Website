@@ -2,9 +2,9 @@ import {v2 as cloudinary} from 'cloudinary';
 import multer from 'multer';
 
 cloudinary.config({
-    cloud_name: "dgxluuo6b",
-    api_key: "925597412423685",
-    api_secret: "XO2ua1e8je8rBcybaz7H2UIa_PI",
+    cloud_name: "<ADD YOUR CLOUDINARY CLOUD NAME HERE>",
+    api_key: "<ADD YOUR CLOUDINARY API KEY HERE>",
+    api_secret: "<ADD YOUR CLOUDINARY API SECRET HERE>",
 });
 
 const storage = new multer.memoryStorage();

@@ -18,7 +18,7 @@ import commonFeatureRouter from "./routes/common/feature-routes.js";
 // Create a database connection -> u can also
 // Create a separate file for this and tehn import/use that file here
 
-mongoose.connect('mongodb+srv://anisdangol121:bgnBFpOsRhscKDPY@e-commerce.1h459.mongodb.net/')
+mongoose.connect('<ADD YOUR MONGODB CONNECTION STRING HERE>')
 .then(() => console.log('MongoDB connected'))
 .catch(error => console.log(error));
 
