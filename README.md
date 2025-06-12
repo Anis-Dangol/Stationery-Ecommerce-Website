@@ -2,6 +2,10 @@
 
 A full-stack E-Commerce web application with modern UI, user authentication, admin dashboard, product management, shopping cart, order management, and more. Built with React (Vite, Tailwind CSS) for the frontend and Node.js (Express, MongoDB) for the backend.
 
+## Important Note: 
+
+"I forgot to create a .env file 😅😅 and kept building the project until it was halfway done — so don’t forget to set up your .env file early and keep your API keys safe! 😉😉"
+
 ## Features
 
 ### User
@@ -101,6 +105,62 @@ root/
 
 5. **Open the app:**
    - Visit `http://localhost:5173` (or the port shown in terminal) for the frontend.
+
+## Environment Variables & Security
+
+**Important:** Never commit sensitive information (API keys, secrets, database URIs, etc.) directly in your code. Always use environment variables and a `.env` file to keep your credentials secure.
+
+### How to Use a `.env` File
+
+1. **Create a `.env` file** in both your `client` and `server` directories (if both need environment variables).
+
+2. **Move all sensitive values** (API keys, database URIs, secret tokens, etc.) from your code into the `.env` file. For example:
+
+   **server/.env**
+
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   CLOUDINARY_API_KEY=your_cloudinary_api_key
+   CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+   PAYPAL_CLIENT_ID=your_paypal_client_id
+   ```
+
+   **client/.env**
+
+   ```env
+   VITE_API_URL=http://localhost:5000
+   VITE_PAYPAL_CLIENT_ID=your_paypal_client_id
+   ```
+
+   > Note: For Vite (React), all environment variables must start with `VITE_`.
+
+3. **Access environment variables in your code:**
+
+   - In Node.js (server):
+     ```js
+     const db = process.env.MONGODB_URI;
+     const secret = process.env.JWT_SECRET;
+     ```
+   - In Vite (client):
+     ```js
+     const apiUrl = import.meta.env.VITE_API_URL;
+     ```
+
+4. **Add `.env` to `.gitignore`** to prevent it from being committed to your repository:
+
+   - Add the following line to your `.gitignore` file in both `client` and `server`:
+     ```gitignore
+     .env
+     ```
+
+5. **Restart your development server** after making changes to the `.env` file.
+
+### What to do if you committed an API key by mistake?
+
+- Remove the key from your code and move it to `.env`.
+- Change/regenerate the key from your provider's dashboard if possible.
+- Commit the changes and push.
 
 ## Screenshots
 
